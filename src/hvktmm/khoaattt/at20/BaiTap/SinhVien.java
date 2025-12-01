@@ -1,5 +1,6 @@
 package hvktmm.khoaattt.at20.BaiTap;
 import java.lang.classfile.instruction.SwitchCase;
+import java.lang.Exception;
 import java.util.Scanner;
 public class SinhVien {
     private String maSo;
@@ -70,10 +71,10 @@ public class SinhVien {
 
     public String Classify(){
         double avg = AvgPoint();
+        if(avg <0) throw new Exception("average point can not be negative");
         if(avg >= 8.0) return "Gioi";
         else if(avg >= 6.5) return "Kha";
         else if(avg >= 5) return "Trung Binh";
         else return "Yeu";
-
     }
 }

@@ -18,8 +18,8 @@ public class QuanLyTaiKhoan {
         System.out.println("\n===== TAI KHOAN VAY =====");
         TaiKhoanVay tkv = new TaiKhoanVay("003", "Le C", 2000, 5000);
         tkv.kiemTraSoDu();
-        tkv.rutTien(6000);   // được phép vì 2000 + 5000 = 7000
-        tkv.rutTien(2000);   // vượt hạn mức
+        tkv.rutTien(6000);
+        tkv.rutTien(2000);
         tkv.kiemTraSoDu();
     }
 }
@@ -38,9 +38,8 @@ class TaiKhoan {
         if (soTien > 0) {
             soDu += soTien;
             System.out.println("Nạp tiền thành công. Số dư mới: " + soDu);
-        } else {
+        } else
             System.out.println("Số tiền nạp phải > 0");
-        }
     }
 
     public void rutTien(double soTien) {
@@ -52,9 +51,9 @@ class TaiKhoan {
         if (soTien <= soDu) {
             soDu -= soTien;
             System.out.println("Rút tiền thành công. Số dư mới: " + soDu);
-        } else {
+        } else
             System.out.println("Không đủ tiền trong tài khoản!");
-        }
+
     }
 
     public void kiemTraSoDu() {
@@ -64,7 +63,7 @@ class TaiKhoan {
 
 class TaiKhoanTietKiem extends TaiKhoan {
 
-    private double laiSuat;  // % lãi suất hàng tháng
+    private double laiSuat;
 
     public TaiKhoanTietKiem(String soTaiKhoan, String tenChuTaiKhoan, double soDu, double laiSuat) {
         super(soTaiKhoan, tenChuTaiKhoan, soDu);
@@ -96,8 +95,8 @@ class TaiKhoanVay extends TaiKhoan {
         if (soTien <= soDu + hanMucVay) {
             soDu -= soTien;
             System.out.println("Rút tiền thành công (cho phép vay). Số dư hiện tại: " + soDu);
-        } else {
+        } else
             System.out.println("Vượt quá hạn mức vay! Không thể rút.");
-        }
+
     }
 }

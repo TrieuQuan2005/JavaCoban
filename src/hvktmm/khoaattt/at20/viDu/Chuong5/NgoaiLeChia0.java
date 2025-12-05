@@ -1,6 +1,6 @@
 package hvktmm.khoaattt.at20.viDu.Chuong5;
 
-public class ExceptionDemo {
+ class ExceptionDemo {
     public static void main(String[] args) {
         int soA = 10;    int soB = 0;
         try {

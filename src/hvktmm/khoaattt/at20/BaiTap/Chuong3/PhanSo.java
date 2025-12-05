@@ -84,9 +84,17 @@ public class PhanSo {
         this.rutGon();
         System.out.println(this.tu + "/" + this.mau);
     }
+}
+class MainClass {
+    public static void main(String[] args) {
+        PhanSo ps = new PhanSo(4,5);
+        PhanSo ps2 = new PhanSo(8,5);
+        ps.Mul(ps2).HienThiPhanSo();
+        ps.Sub(ps2).HienThiPhanSo();
+        ps.Div(ps2).HienThiPhanSo();
+        ps.Sum(ps2).HienThiPhanSo();
 
-    @Override
-    public String toString() {
-        return tu + "/" + mau;
+        PhanSo ps3 = new PhanSo(-4,-5);
+        ps3.HienThiPhanSo();
     }
 }

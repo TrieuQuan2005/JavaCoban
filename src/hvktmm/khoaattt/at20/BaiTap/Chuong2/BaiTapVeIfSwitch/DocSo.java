@@ -1,5 +1,6 @@
 package hvktmm.khoaattt.at20.BaiTap.Chuong2.BaiTapVeIfSwitch;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class DocSo {
@@ -14,29 +15,59 @@ public class DocSo {
     static String docSo(int n) {
         if (!isValid(n)) return "Số không hợp lệ!";
 
+        // Trường hợp đặc biệt
+        if (n == 0) return "Không";
+
         int tram = n / 100;
         int chuc = (n % 100) / 10;
         int donvi = n % 10;
 
         String result = "";
+
         if (tram != 0) result += HangTram[tram] + " ";
 
         if (chuc == 0 && donvi != 0 && tram != 0) result += "Lẻ ";
         if (chuc != 0) result += HangChuc[chuc] + " ";
 
         if (donvi != 0) {
-            if (chuc > 1 && donvi == 1) result += "Mốt ";
-            else if (chuc >= 1 && donvi == 5) result += "Lăm ";
-            else result += DonVi[donvi] + " ";
+            if (chuc == 1 && donvi == 5) {
+                result += "Lăm ";            // Mười lăm
+            }
+            else if (chuc > 1 && donvi == 1) {
+                result += "Mốt ";            // Hai mươi mốt
+            }
+            else if (chuc >= 1 && donvi == 5) {
+                result += "Lăm ";            // Hai mươi lăm
+            }
+            else {
+                result += DonVi[donvi] + " ";
+            }
         }
 
         return result.trim();
     }
 
-    static void main(String[] args) {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhập số (0–999): ");
-        int n = sc.nextInt();
+        int n;
+
+        while (true) {
+            try {
+                System.out.print("Nhập số (0–999): ");
+                n = sc.nextInt();
+
+                if (!isValid(n)) {
+                    System.out.println("Số phải nằm trong khoảng 0–999. Nhập lại.");
+                    continue;
+                }
+
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Dữ liệu không hợp lệ! Vui lòng nhập số nguyên.");
+                sc.nextLine(); // Xóa buffer lỗi
+            }
+        }
+
         System.out.println("Cách đọc: " + docSo(n));
     }
 }

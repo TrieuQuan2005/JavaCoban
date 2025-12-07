@@ -15,3 +15,10 @@ public class Car {
         // MAX_SPEED = 260;  //  Lỗi vì final không thể thay đổi
     }
 }
+
+class MainCar {
+    public static void main(String[] args) {
+        Car car = new Car("1HGBH41JXMN109186");
+        car.getDetails();
+    }
+}

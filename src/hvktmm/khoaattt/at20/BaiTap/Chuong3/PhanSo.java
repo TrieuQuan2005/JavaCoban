@@ -21,6 +21,7 @@ public class PhanSo {
             throw new IllegalArgumentException("Mẫu số không được bằng 0");
         }
         this.mau = mau;
+        rutGon();
     }
 
     public PhanSo(int tu, int mau) {
@@ -34,20 +35,28 @@ public class PhanSo {
         this(0, 1);
     }
 
+    // GCD iterative version
     private int GCD(int a, int b) {
         a = Math.abs(a);
         b = Math.abs(b);
-        return b == 0 ? a : GCD(b, a % b);
+        while (b != 0) {
+            int tmp = a % b;
+            a = b;
+            b = tmp;
+        }
+        return a;
     }
 
     private int LCM(int a, int b) {
-        return Math.abs(a * b) / GCD(a, b);
+        return Math.abs(a / GCD(a, b) * b);
     }
 
     private void rutGon() {
         int gcd = GCD(tu, mau);
         tu /= gcd;
         mau /= gcd;
+
+        // chuẩn hóa mẫu số luôn dương
         if (mau < 0) {
             tu = -tu;
             mau = -mau;
@@ -76,25 +85,37 @@ public class PhanSo {
     }
 
     public PhanSo Div(PhanSo ps) {
-        if (ps.tu == 0) throw new ArithmeticException("Không thể chia cho 0");
+        if (ps.tu == 0) throw new ArithmeticException("Không thể chia cho phân số có tử = 0");
         return new PhanSo(this.tu * ps.mau, this.mau * ps.tu);
     }
 
+    @Override
+    public String toString() {
+        return tu + "/" + mau;
+    }
+
     public void HienThiPhanSo() {
-        this.rutGon();
-        System.out.println(this.tu + "/" + this.mau);
+        System.out.println(toString());
     }
 }
+
 class MainClass {
     public static void main(String[] args) {
-        PhanSo ps = new PhanSo(4,5);
-        PhanSo ps2 = new PhanSo(8,5);
-        ps.Mul(ps2).HienThiPhanSo();
-        ps.Sub(ps2).HienThiPhanSo();
-        ps.Div(ps2).HienThiPhanSo();
-        ps.Sum(ps2).HienThiPhanSo();
 
-        PhanSo ps3 = new PhanSo(-4,-5);
-        ps3.HienThiPhanSo();
+        try {
+            PhanSo ps = new PhanSo(4, 5);
+            PhanSo ps2 = new PhanSo(8, 5);
+
+            ps.Mul(ps2).HienThiPhanSo();
+            ps.Sub(ps2).HienThiPhanSo();
+            ps.Div(ps2).HienThiPhanSo();
+            ps.Sum(ps2).HienThiPhanSo();
+
+
+
+        } catch (Exception e) {
+            System.out.println("Lỗi: " + e.getMessage());
+        }
+
     }
 }

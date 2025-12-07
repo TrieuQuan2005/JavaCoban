@@ -1,8 +1,10 @@
 package hvktmm.khoaattt.at20.BaiTap.Chuong2.BaiTapVeIfSwitch;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ThangNamTroiQuaNhanhQua {
+
     static boolean isLeapYear(int year) {
         return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
     }
@@ -20,16 +22,33 @@ public class ThangNamTroiQuaNhanhQua {
         }
     }
 
-    static void main(String[] args) {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int month = sc.nextInt();
-        int year = sc.nextInt();
+        int month = 0, year = 0;
 
-        int days = getDaysInMonth(month, year);
+        try {
+            System.out.print("Nhập tháng: ");
+            month = sc.nextInt();
 
-        if (days != 0) System.out.println("Tháng " + month + " năm " + year + " có " + days + " ngày.");
-        else System.out.println("Tháng không hợp lệ.");
+            System.out.print("Nhập năm: ");
+            year = sc.nextInt();
 
+            if (month < 1 || month > 12) {
+                throw new IllegalArgumentException("Tháng phải từ 1 đến 12!");
+            }
+            if (year <= 0) {
+                throw new IllegalArgumentException("Năm phải lớn hơn 0!");
+            }
+
+            int days = getDaysInMonth(month, year);
+            System.out.println("Tháng " + month + " năm " + year + " có " + days + " ngày.");
+
+        } catch (InputMismatchException e) {
+            System.out.println("Lỗi: Bạn phải nhập số nguyên!");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Lỗi: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Lỗi không xác định: " + e.getMessage());
+        }
     }
 }
-

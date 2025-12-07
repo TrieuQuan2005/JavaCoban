@@ -1,16 +1,34 @@
 package hvktmm.khoaattt.at20.BaiTap.Chuong2.BaiTapVeforWhile;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GDP {
+
+    private static final Scanner sc = new Scanner(System.in);
+
+    private static double AssignValue(String message) {
+        while (true) {
+            try {
+                System.out.print(message);
+                double variable = sc.nextDouble();
+
+                if (variable < 0) {
+                    throw new InputMismatchException();
+                }
+
+                return variable;
+
+            } catch (InputMismatchException e) {
+                System.out.println("Giá trị không hợp lệ. Vui lòng nhập lại.");
+                sc.nextLine();  // Xóa buffer lỗi
+            }
+        }
+    }
+
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Nhập GDP năm 2020 (tỷ USD): ");
-        double initGDP = sc.nextDouble();
-
-        System.out.print("Nhập tốc độ tăng trưởng trung bình (%): ");
-        double growthRate = sc.nextDouble() / 100;
+        double initGDP = AssignValue("Nhập GDP ban đầu (tỷ USD): ");
+        double growthRate = AssignValue("Nhập tốc độ tăng trưởng trung bình (%): ") / 100;
 
         double gdp = initGDP;
         int year = 2020;

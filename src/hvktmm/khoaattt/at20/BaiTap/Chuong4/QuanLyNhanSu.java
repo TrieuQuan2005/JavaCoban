@@ -1,23 +1,42 @@
 package hvktmm.khoaattt.at20.BaiTap.Chuong4;
 
 public class QuanLyNhanSu {
-    public void main(String[] args){
-        Employee nv =  new Employee("Quan", 21,true,"adsa" , 4.3,"AT200147",3.0);
-        Manager mn = new Manager("Quan", 21,true,"adsa" , "AT200147",3.0, 10 , 4);
+    public static void main(String[] args) {
+        try {
+            Employee nv = new Employee("Quan", 21, true, "HN",
+                    4.3, "AT200147", 3.0);
 
+            Manager mn = new Manager("Quan", 21, true, "HN",
+                    "AT200147", 3.0, 4.3, 10);
 
-        System.out.println("Luong Nhan Vien" + nv.name+  " la: " + Math.round(nv.getLuong()) + " Trieu VND");
-        System.out.println("Luong Quan Ly" + mn.name+  " la: " + Math.round(mn.getLuong())+ " Trieu VND");
+            System.out.println("Luong Nhan Vien " + nv.name + ": "
+                    + Math.round(nv.getLuong()) + " Trieu VND");
+
+            System.out.println("Luong Quan Ly " + mn.name + ": "
+                    + Math.round(mn.getLuong()) + " Trieu VND");
+
+        } catch (IllegalArgumentException ex) {
+            System.err.println("Lỗi dữ liệu đầu vào: " + ex.getMessage());
+        } catch (Exception ex) {
+            System.err.println("Lỗi không xác định: " + ex.getMessage());
+        }
     }
 }
 
-abstract class Person{
+abstract class Person {
     String name;
     int age;
     boolean gioiTinh;
     String diaChi;
 
-    public Person(String name, int age, boolean gioiTinh, String diaChi){
+    public Person(String name, int age, boolean gioiTinh, String diaChi) {
+
+        if (name == null || name.isEmpty())
+            throw new IllegalArgumentException("Ten khong duoc de trong!");
+
+        if (age <= 0)
+            throw new IllegalArgumentException("Tuoi phai > 0!");
+
         this.name = name;
         this.age = age;
         this.gioiTinh = gioiTinh;
@@ -25,12 +44,23 @@ abstract class Person{
     }
 }
 
-class Employee extends Person{
+
+
+class Employee extends Person {
     String MaNV;
     double HSL, luongCoBan;
 
-    public Employee(String name, int age, boolean gioiTinh, String diaChi, double luongCoBan, String MaNV, double HSL){
+    public Employee(String name, int age, boolean gioiTinh, String diaChi,
+                    double luongCoBan, String MaNV, double HSL) {
+
         super(name, age, gioiTinh, diaChi);
+
+        if (luongCoBan <= 0)
+            throw new IllegalArgumentException("Luong co ban phai > 0!");
+
+        if (HSL <= 0)
+            throw new IllegalArgumentException("He so luong phai > 0!");
+
         this.MaNV = MaNV;
         this.HSL = HSL;
         this.luongCoBan = luongCoBan;
@@ -41,11 +71,18 @@ class Employee extends Person{
     }
 }
 
-class Manager extends Employee{
+
+class Manager extends Employee {
     double PhuCap;
 
-    public Manager(String name,int age, boolean gioitinh, String DiaChi, String MaNV, double HSL, double luongCoBan, double PhuCap){
-        super(name,age,gioitinh,DiaChi,luongCoBan,MaNV,HSL);
+    public Manager(String name, int age, boolean gioitinh, String diaChi,
+                   String MaNV, double HSL, double luongCoBan, double PhuCap) {
+
+        super(name, age, gioitinh, diaChi, luongCoBan, MaNV, HSL);
+
+        if (PhuCap < 0)
+            throw new IllegalArgumentException("Phu cap khong duoc am!");
+
         this.PhuCap = PhuCap;
     }
 

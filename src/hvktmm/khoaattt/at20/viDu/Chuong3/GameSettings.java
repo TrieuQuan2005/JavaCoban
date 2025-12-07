@@ -10,3 +10,14 @@ public class GameSettings { // Lớp chứa quy tắc game (GameSettings)
     }
 }
 
+class MainGame{
+    public static void main(String[] args) {
+        GameSettings settings = new GameSettings();
+        int score = settings.tinhDiem(10, 80);
+        System.out.println("Điểm của người chơi: " + score);
+        System.out.println("Cấp độ tối đa: " + GameSettings.MAX_LEVEL);
+        System.out.println("Máu tối đa: " + GameSettings.MAX_HP);
+        System.out.println("Tỷ lệ chí mạng: " + GameSettings.CRIT_RATE);
+    }
+}
+

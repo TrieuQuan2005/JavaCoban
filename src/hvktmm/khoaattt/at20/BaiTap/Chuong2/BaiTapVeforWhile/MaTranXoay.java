@@ -1,9 +1,32 @@
 package hvktmm.khoaattt.at20.BaiTap.Chuong2.BaiTapVeforWhile;
 import java.util.Scanner;
+import java.lang.Exception;
+import java.util.InputMismatchException;
+
 public class MaTranXoay {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+        int n;
+
+        while (true) {
+            try {
+                System.out.print("Nhập kích thước ma trận: ");
+                n = sc.nextInt();
+
+                if (n <= 0) {
+                    System.out.println("Kích thước phải > 0. Vui lòng nhập lại.");
+                    continue;
+                }
+
+                break; // hợp lệ → thoát vòng lặp
+
+            } catch (InputMismatchException e) {
+                System.out.println("Dữ liệu không hợp lệ. Vui lòng nhập số nguyên dương.");
+                sc.nextLine(); // xoá dữ liệu rác trong buffer
+            }
+        }
+
+
         int[][] a = new int[n][n];
         int value =1;
 

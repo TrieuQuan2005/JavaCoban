@@ -7,7 +7,15 @@ public class Product implements Sellable {
     public Product(String name, String description, double price) {
         this.name = name;
         this.description = description;
-        this.price = price;
+        try {
+            if (price < 0) {
+                throw new IllegalArgumentException("Price cannot be negative");
+            }
+            this.price = price;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            this.price = 0;
+        }
     }
     @Override
     public double getPrice() {

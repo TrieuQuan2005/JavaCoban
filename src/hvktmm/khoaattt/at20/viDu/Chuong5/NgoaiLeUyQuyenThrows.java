@@ -29,6 +29,13 @@ class Main6 {
         System.out.println("Chương trình vẫn tiếp tục chạy...");
     }
 }
+
+
+
+
+
+
+
 class Validator { // Phương thức này có thể ném lỗi → dùng throws để ủy quyền
     void checkAge(int age) throws IllegalArgumentException {
         try {

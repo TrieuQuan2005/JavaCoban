@@ -1,5 +1,4 @@
-package hvktmm.khoaattt.at20.viDu.Chuong2;
-
+package hvktmm.khoaattt.at20.viDu.Chuong3;
 
 public class Demo {
     public static void main(String[] args) {

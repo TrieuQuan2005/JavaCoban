@@ -5,8 +5,7 @@ import java.util.Collections;
 public class ArrayListInteger {
     public static void main(String[] args) {
         // Tạo ArrayList số nguyên
-        ArrayList<Integer> ds =
-                new ArrayList<>();
+        ArrayList<Integer> ds = new ArrayList<>();
         // Thêm phần tử
         ds.add(4); // có chỉ số 0
         ds.add(2); // có chỉ số 1
